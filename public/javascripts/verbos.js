@@ -7,7 +7,7 @@ function begin() {
       url: '/welcome/tiempos',
       dataType: 'json',
       success: function(json) {
-          $(json).each(function(index, modo) {
+          $(json.modos).each(function(index, modo) {
             var $fieldset = $('<fieldset/>')
             $fieldset.append( $('<legend/>').text(modo.name) )
 

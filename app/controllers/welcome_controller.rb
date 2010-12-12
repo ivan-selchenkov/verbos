@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
       res.push( { :name => modo.name, :tiempos => row } )
     end
 
-    render :json => res
+    render :json => { :modos => res }
   end
 
 end
