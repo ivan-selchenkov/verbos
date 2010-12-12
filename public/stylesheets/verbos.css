@@ -1,0 +1,22 @@
+body {
+    font-size: 15px;
+    text-shadow: 1px 1px 1px #ccc;
+    color: gray;
+}
+div.header {
+    text-align: center;
+    font-size: 25px;
+    text-shadow: 2px 2px 2px #cc0;
+    color: gray;
+}
+div.title {
+    font-size: 17px;
+    text-shadow: 1px 1px 1px #ccc;
+    color: gray;
+}
+div#tiempos {
+    width: 300px;
+}
+label {
+    display: block;
+}
