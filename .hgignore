@@ -1,2 +1,4 @@
 ^log/*
 ^nbproject/*
+sqlite3$
+schema.rb$
