@@ -1,16 +1,22 @@
 <div class="header">¡Estudiamos unos verbos!</div>
 
 <div class="main_block">
-<div class="left_block">
-  <div class="title">
-    Elige los tiempos para aprender:
-    <div id="tiempos"></div>
-  </div>
-</div>
-<div class="center_block">&nbsp;</div>
-<div class="right_block">
-  <div class="title">
-  Elige las formas:
-  </div>
-</div>
+  <form id="form_submit" action="/s/s" method="POST">
+    <div class="left_block">
+      <div class="title">
+        Elige los tiempos para aprender:
+        <div id="tiempos"></div>
+      </div>
+    </div>
+    <div class="center_block">&nbsp;</div>
+    <div class="right_block">
+      <div class="title">
+      Elige las formas:
+      <fieldset id="formas">
+        <legend>Formas</legend>
+      </fieldset>
+      </div>
+      <input id="empezar" type="submit" value="Empezar"/>
+    </div>
+  </form>
 </div>

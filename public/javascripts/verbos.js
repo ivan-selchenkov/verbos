@@ -1,6 +1,20 @@
 $(function() {
     begin();
+    $('#form_submit').submit(function() {
+        var tiempos = $('input:checked[name=tiempo]').map(function(i, item) {
+            return $(item).val()
+        });
+        var formas = $('input:checked[name=forma]').map(function(i, item) {
+            return $(item).val()
+        });
+        $.ajax({
+          url: '/welcome/tiempos',
+          data: { tiempos: tiempos, formas: formas }
+        });
+        return false;
+    });
 });
+
 
 function begin() {
     $.ajax({
@@ -14,16 +28,29 @@ function begin() {
             $(modo.tiempos).each(function(index, tiempo) {
                 $fieldset.append(
                     $('<label/>').append(
-                        $('<input/>').attr('type', 'checkbox').attr('id', 'tiempo' + tiempo.id)
+                        $('<input/>').attr('type', 'checkbox')
+                                     .attr('name', 'tiempo')
+                                     .attr('value', tiempo.id)
+                                     .attr('id', 'tiempo' + tiempo.id)
                     ).append(
                         tiempo.name
                     )
                 )
-            })
-
-
-            $('#tiempos').append($fieldset)
-          })
+            });
+            $('#tiempos').append($fieldset);
+          });
+          $(json.formas).each(function(index, forma) {
+            $('#formas').append(
+                $('<label/>').append(
+                    $('<input/>').attr('type', 'checkbox')
+                                 .attr('name', 'forma')
+                                 .attr('value', forma.id)
+                                 .attr('id', 'forma' + forma.id)
+                ).append(
+                    forma.name
+                )
+            )
+        });
       }
     });
 };

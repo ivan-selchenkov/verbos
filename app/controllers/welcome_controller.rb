@@ -16,7 +16,15 @@ class WelcomeController < ApplicationController
       res.push( { :name => modo.name, :tiempos => row } )
     end
 
-    render :json => { :modos => res }
+    @formas = Forma.find(:all, :order => "id")
+
+    res_formas = []
+
+    @formas.each do |f|
+      res_formas.push({:name => f.name, :id => f.id})
+    end
+
+    render :json => { :modos => res, :formas => res_formas }
   end
 
 end

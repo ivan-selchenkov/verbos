@@ -22,6 +22,7 @@ div.left_block {
 div.right_block {
     width: 300px;
     float: left;
+    text-align: center;
 }
 div.center_block {
     width: 100px;
@@ -34,4 +35,12 @@ div.main_block {
     margin-left: auto;
     margin-right: auto;
     width: 700px;
+}
+#empezar {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#formas {
+    text-align: left;
 }
