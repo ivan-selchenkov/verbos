@@ -44,3 +44,10 @@ div.main_block {
 #formas {
     text-align: left;
 }
+#learn_block {
+    width: 200px;
+    height: 400px;
+    border: 1px gray solid;
+    margin: auto;
+    display: none;
+}

@@ -8,13 +8,19 @@ $(function() {
             return $(item).val()
         });
         $.ajax({
-          url: '/welcome/tiempos',
-          data: { tiempos: tiempos, formas: formas }
+          url: '/welcome/start',
+          data: { tiempos: tiempos, formas: formas },
+          success: exam
         });
         return false;
     });
 });
 
+function exam(json) {
+    console.log(json)
+    $('#start_block').hide();
+    $('#learn_block').show();
+}
 
 function begin() {
     $.ajax({
