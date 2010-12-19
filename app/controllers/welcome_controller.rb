@@ -39,13 +39,19 @@ class WelcomeController < ApplicationController
     size = palabras.length
 
     preguntas = 20.times.map{
-      rand = Random.new.rand(0..size-1)
+      pp = palabras[Random.new.rand(0..size-1)]
+      
+      while pp.nil? or pp.verb.nil?
+        pp = palabras[Random.new.rand(0..size-1)]
+      end
+
+      p pp
 
       {
-        :verb => palabras[rand].verb.verbo,
-        :forma => palabras[rand].forma.name,
-        :tiempo => palabras[rand].tiempo.name,
-        :palabra => palabras[rand].name
+        :verb => pp.verb.verbo,
+        :forma => pp.forma.name,
+        :tiempo => pp.tiempo.name,
+        :palabra => pp.name
       }
     }
 
