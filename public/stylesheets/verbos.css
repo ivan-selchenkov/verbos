@@ -52,12 +52,28 @@ div.main_block {
 }
 #learn_block {
     width: 500px;
-    height: 500px;
+    height: 400px;
     margin: auto;
     display: none;
+    overflow: hidden;
+    position: relative;
+}
+#verbos {
+    position: absolute;
+    bottom: 0px;
+    left: 89px;
 }
 .tarjeta {
-    border: 1px lightgray solid;
+    border: 1px gray solid;
+    text-align: center;
+    width: 300px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.normal {
     background: -webkit-gradient(
         linear,
         left bottom,
@@ -70,11 +86,36 @@ div.main_block {
         rgb(133,172,255) 2%,
         rgb(244,246,252) 100%
     );
-    text-align: center;
-    width: 300px;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+}
+.ok {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(10,148,0)),
+        color-stop(1, rgb(220,237,223))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(10,148,0) 0%,
+        rgb(220,237,223) 100%
+    );
+}
+.error {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(255,0,0)),
+        color-stop(1, rgb(255,242,242))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(255,0,0) 0%,
+        rgb(255,242,242) 100%
+    );
+}
+.respuesta {
+    color: white;
+    font-weight: bold;
 }

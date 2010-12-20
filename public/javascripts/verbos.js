@@ -40,7 +40,7 @@ function exponer_pregunta() {
     };
 
     var $pregunta =
-    $('<div/>').addClass('tarjeta').append(
+    $('<div/>').addClass('tarjeta normal').append(
                     '<b>Tiempo:</b> <i>' + item.tiempo + '</i><br/> <b>Verbo:</b> <i>' + item.verb + '</i><br/>'
                 ).append(
                     $('<div/>').addClass('forma_verb')
@@ -48,10 +48,11 @@ function exponer_pregunta() {
                                .append(
                                    $('<input/>').attr('type', 'text')
                                                 .attr('index', current_index)
-                                                .keypress(probar_respuesta)                                                
+                                                .keypress(probar_respuesta)
                                )
-                ).corner("round 10px");
-    $('#learn_block').append($pregunta);
+                ).corner("round 10px")
+                .attr('index', current_index);
+    $('#verbos').append($pregunta);
     $("input:text:last").focus();
 };
 function fin_de_exam() {
@@ -63,13 +64,31 @@ function probar_respuesta(event) {
     };
 
     event.preventDefault();
-    
-    var index = $(this).attr('index');
-    var respuesta = $(this).val();
+
+    var $this = $(this);
+    var index = $this.attr('index');
+    var respuesta = $this.val();
+
+    var $tarjeta = $this.parents('div.tarjeta');
+
+    $tarjeta.removeClass('normal');
 
     if(respuesta != data[index].palabra) {
-        alert('error');
+        $tarjeta.addClass('error');
+    } else {
+        $tarjeta.addClass('ok');
     };
+    $this.after(
+        $('<span/>').addClass('respuesta').text(data[index].palabra)
+    );
+    $this.remove();
+
+    if( +index - 3 >= 0 ) {
+        $('div.tarjeta[index=' + (+index-3) + ']').remove();
+    };
+    $('div.tarjeta[index=' + (+index-2) + ']').animate({ opacity: 0.1 }, 100);
+    $('div.tarjeta[index=' + (+index-1) + ']').animate({ opacity: 0.5 }, 100);
+
     current_index++;
     exponer_pregunta();
 };
