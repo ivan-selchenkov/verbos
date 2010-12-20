@@ -21,7 +21,6 @@ $(function() {
 });
 
 function exam(json) {
-    console.log(json)
     $('#start_block').hide();
     $('#learn_block').show();
 
@@ -35,7 +34,10 @@ function exam(json) {
 function exponer_pregunta() {
     var item = data[current_index];
 
-    console.log(item);
+    if(item == undefined) {
+      fin_de_exam();
+      return;
+    };
 
     var $pregunta =
     $('<div/>').addClass('tarjeta').append(
@@ -46,17 +48,30 @@ function exponer_pregunta() {
                                .append(
                                    $('<input/>').attr('type', 'text')
                                                 .attr('index', current_index)
-                                                .keypress(probar_respuesta)
+                                                .keypress(probar_respuesta)                                                
                                )
                 ).corner("round 10px");
     $('#learn_block').append($pregunta);
+    $("input:text:last").focus();
 };
+function fin_de_exam() {
 
-function probar_respuesta() {
-    if (event.keyCode == '13') {
-        event.preventDefault();
+};
+function probar_respuesta(event) {
+    if (event.keyCode != '13') {
+        return;
     };
 
+    event.preventDefault();
+    
+    var index = $(this).attr('index');
+    var respuesta = $(this).val();
+
+    if(respuesta != data[index].palabra) {
+        alert('error');
+    };
+    current_index++;
+    exponer_pregunta();
 };
 function begin() {
     $.ajax({
