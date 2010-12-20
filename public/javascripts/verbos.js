@@ -1,3 +1,7 @@
+var data = null;
+var current_index = 0;
+var errors = null;
+
 $(function() {
     begin();
     $('#form_submit').submit(function() {
@@ -20,8 +24,40 @@ function exam(json) {
     console.log(json)
     $('#start_block').hide();
     $('#learn_block').show();
-}
 
+    data = json.preguntas;
+    current_index = 0;
+    errors = [];
+
+    exponer_pregunta();
+};
+
+function exponer_pregunta() {
+    var item = data[current_index];
+
+    console.log(item);
+
+    var $pregunta =
+    $('<div/>').addClass('tarjeta').append(
+                    '<b>Tiempo:</b> <i>' + item.tiempo + '</i><br/> <b>Verbo:</b> <i>' + item.verb + '</i><br/>'
+                ).append(
+                    $('<div/>').addClass('forma_verb')
+                               .append('<i>' + item.forma + '</i>&nbsp;')
+                               .append(
+                                   $('<input/>').attr('type', 'text')
+                                                .attr('index', current_index)
+                                                .keypress(probar_respuesta)
+                               )
+                ).corner("round 10px");
+    $('#learn_block').append($pregunta);
+};
+
+function probar_respuesta() {
+    if (event.keyCode == '13') {
+        event.preventDefault();
+    };
+
+};
 function begin() {
     $.ajax({
       url: '/welcome/tiempos',
