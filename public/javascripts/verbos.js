@@ -1,6 +1,7 @@
 var data = null;
 var current_index = 0;
 var errors = null;
+var height = null;
 
 $(function() {
     begin();
@@ -18,6 +19,13 @@ $(function() {
         });
         return false;
     });
+    height = $(window).height();
+    $('#learn_block').height(+height / 2);
+    $(window).resize(function() {
+        height = $(window).height();
+        $('#learn_block').height(+height / 2);
+    });
+
 });
 
 function exam(json) {
