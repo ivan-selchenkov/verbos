@@ -9,12 +9,9 @@ $(function() {
         var tiempos = $('input:checked[name=tiempo]').map(function(i, item) {
             return $(item).val()
         });
-        var formas = $('input:checked[name=forma]').map(function(i, item) {
-            return $(item).val()
-        });
         $.ajax({
           url: '/welcome/start',
-          data: { tiempos: tiempos, formas: formas },
+          data: { tiempos: tiempos },
           success: exam
         });
         return false;
@@ -123,18 +120,6 @@ function begin() {
             });
             $('#tiempos').append($fieldset);
           });
-          $(json.formas).each(function(index, forma) {
-            $('#formas').append(
-                $('<label/>').append(
-                    $('<input/>').attr('type', 'checkbox')
-                                 .attr('name', 'forma')
-                                 .attr('value', forma.id)
-                                 .attr('id', 'forma' + forma.id)
-                ).append(
-                    forma.name
-                )
-            )
-        });
       }
     });
 };

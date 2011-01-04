@@ -29,12 +29,10 @@ class WelcomeController < ApplicationController
 
   def start
     p_tiempos = params[:tiempos]
-    p_formas = params[:formas]
 
     tiempos = p_tiempos.map { |i, v| v }
-    formas = p_formas.map { |i, v| v }
 
-    palabras = Palabra.where(:tiempo_id => tiempos).where(:forma_id => formas)
+    palabras = Palabra.where(:tiempo_id => tiempos)
 
     size = palabras.length
 
